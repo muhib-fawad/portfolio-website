@@ -142,16 +142,26 @@ svg {
     fill: white;
 }
 
-#linkedin-logo {
+.icon {
+    margin: 0;
+    padding: 0;
+    border: 3px solid white;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 50px;
     height: 50px;
     padding: 6px;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    box-shadow: inset 0 0 5px 2px rgba(255, 255, 255, 0.1),  
+                0 0 5px 2px rgba(255, 255, 255, 0.1);
     border-radius: 80px;
     background-clip: border-box;
-    /* background: black; */
+}
+
+#github-icon {
+    background: white;
+    filter: invert()
 }
 
 #content-wrapper {
