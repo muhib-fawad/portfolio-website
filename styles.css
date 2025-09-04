@@ -11,7 +11,7 @@ body {
     padding: 0;
     text-align: center;
     background: #0e0e0e;
-    color: #ffffff;
+    color: white;
     font-family: "Roboto", sans-serif;
 }
 
@@ -108,11 +108,6 @@ nav li:hover {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-svg {
-    fill: white;
-    width: 40px;
-    height: 40px;
-}
 
 #name {
     margin: 0;
@@ -142,6 +137,22 @@ svg {
     margin: 0 2vw 0;
 }
 
+svg {
+    display: block; 
+    fill: white;
+}
+
+#linkedin-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    padding: 6px;
+    border-radius: 80px;
+    background-clip: border-box;
+    /* background: black; */
+}
 
 #content-wrapper {
     padding: 10px 10vw;
