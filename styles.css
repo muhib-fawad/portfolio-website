@@ -27,34 +27,6 @@ ul {
     list-style: none;
 }
 
-.gradient-flow {
-    background: radial-gradient(circle at center, var(--aqua), var(--blue));
-    background-size: 300%;
-    color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0 0 20px rgba(var(--cyan), 0.2));
-    animation: gradientFlow 20s infinite linear
-}
-
-@keyframes gradientFlow {
-    0%   { background-position-x: 300%; }
-    100%  { background-position-x: 0%; }
-}
-
-#content-wrapper {
-
-}
-
-
-
-.section {
-    position: relative;
-}
-
-#about-title {
-    padding-top: 50px;
-}
-
 nav {
     position: fixed;
     top: 10px;
@@ -104,6 +76,30 @@ nav li:hover {
     text-shadow: 0 0 1px whitesmoke, 0 0 3px whitesmoke;
     transition: 0.3s;
     background: rgba(255, 255, 255, 0.07);
+}
+
+#bg-canvas {
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2; /* behind content */
+}
+
+.section {
+    position: relative;
+}
+
+#about-title {
+    padding-top: 50px;
+}
+
+#content-wrapper {
+    padding: 10px 10vw;
+    width: 100vw;
+    box-sizing: border-box;
 }
 
 #hero-wrapper {
@@ -157,6 +153,22 @@ svg {
     fill: rgba(255, 255, 255, 0.8);
 }
 
+#github-icon {
+    background: transparent;
+    fill: transparent;
+}
+
+.project-wrapper {
+    color: black;
+    display: block;
+    width: 90vw;
+    height: 90vh;
+    z-index: 5  ;
+    background-color: white;
+}
+
+
+
 .icon {
     margin: 0;
     padding: 0;
@@ -170,26 +182,19 @@ svg {
     box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.3),  
                 0 0 15px 2px rgba(255, 255, 255, 0.15);
     border-radius: 80px;
-    background-clip: border-box;
+    background-clip: border-box !important;
 }
 
-#github-icon {
-    background: transparent;
-    fill: transparent;
+.gradient-flow {
+    background: radial-gradient(circle at center, var(--aqua), var(--blue));
+    background-size: 300%;
+    color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 20px rgba(var(--cyan), 0.2));
+    animation: gradientFlow 20s infinite linear
 }
 
-#content-wrapper {
-    padding: 10px 10vw;
-    width: 100vw;
-    box-sizing: border-box;
-}
-
-#bg-canvas {
-    overflow: hidden;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -2; /* behind content */
+@keyframes gradientFlow {
+    0%   { background-position-x: 300%; }
+    100%  { background-position-x: 0%; }
 }
