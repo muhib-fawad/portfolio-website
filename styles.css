@@ -158,13 +158,24 @@ svg {
     fill: transparent;
 }
 
+#project {
+    width: 100%
+}
+
+.project-container {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    width: 100%;
+}
+
 .project-wrapper {
-    color: black;
     display: block;
-    width: 90vw;
+    width: 90%;
     height: 90vh;
-    z-index: 5  ;
-    background-color: white;
+    box-sizing: border-box;
+    background-color: grey;
+    border-radius: 7vw;
 }
 
 
