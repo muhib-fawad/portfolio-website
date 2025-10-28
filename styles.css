@@ -187,7 +187,7 @@ svg {
     box-sizing: border-box;
     background-color: rgb(20, 20, 20);
     border-radius: 3rem;
-    padding: 1px 3px;
+    padding: 5px 10px;
     position: relative;
 }
 
@@ -226,18 +226,49 @@ svg {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     overflow: hidden;
     padding: 0;
 }
 .tags {
     width: fit-content;
-    padding: 10px 20px;
-    border: white solid 1px;
+    padding: 3px 2px;
+    font-size: clamp(10px, 2vw, 16px);
+    border: white solid 1px; /* Default border */
     border-radius: 50px;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+.python-tag {
+    border: orange solid 1px;
+    color: orange;
+    background-color: rgba(255, 200, 0, 0.1);
+}
+.c-tag {
+    border: orange solid 1px;
+    color: orange;
+    background-color: rgba(255, 200, 0, 0.1);
+}
+.java-tag {
+    border: orange solid 1px;
+    color: orange;
+    background-color: rgba(255, 200, 0, 0.1);
+}
+.html-tag {
+    border: orange solid 1px;
+    color: orange;
+    background-color: rgba(255, 200, 0, 0.1);
+}
+.css-tag {
+    border: orange solid 1px;
+    color: orange;
+    background-color: rgba(255, 200, 0, 0.1);
+}
+.javascript-tag {
+    border: orange solid 1px;
+    color: orange;
+    background-color: rgba(255, 200, 0, 0.1);
 }
 
 .icon {
