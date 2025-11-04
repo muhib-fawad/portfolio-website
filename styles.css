@@ -18,11 +18,12 @@ body {
 }
 
 h2 {
-    font-size: clamp(20px, 8vw, 60px);
+    font-size: clamp(1.25rem, 4vw + 1.25rem, 3.8rem);
+    margin: min(30px, 3%) 0;
 }
 
 p {
-    font-size: clamp(16px, 3vw, 24px);
+    font-size: clamp(1rem, 1vw + 1rem, 1.5rem);
 }
 
 ul {
@@ -50,7 +51,7 @@ nav ul {
     justify-content: center;
     align-items: center;
     list-style: none;
-    padding: 6px 6px;
+    padding: 6px;
     border: 2px solid rgba(255, 255, 255, 0.15);
     border-radius: 100px;
     box-shadow: inset 0 0 5px 2px rgba(255, 255, 255, 0.1),  
@@ -155,10 +156,10 @@ svg {
     fill: rgba(255, 255, 255, 0.8);
 }
 
-#github-icon {
+.github-icon {
     background: transparent;
     fill: transparent;
-    stroke: rgba(255, 255, 255, 0.8)
+    stroke: rgba(255, 255, 255, 0.8);
 }
 
 #project {
@@ -171,8 +172,9 @@ svg {
     flex-wrap: wrap;
     overflow: wrap;
     justify-content: center;
-    padding: 25px 0;
-    gap: 25px;
+    margin: 0;
+    padding: min(25px, 3%) 0;
+    gap: clamp(20px, 3%, 40px);
     width: 100%;
    
 }
@@ -188,41 +190,38 @@ svg {
     height: 30vh;
     width: clamp(20px, 25%, 500px);
     box-sizing: border-box;
-    background-color: rgb(25, 25, 25);
+    background-color: rgb(25, 25, 25); /* In case color-mix is not supported */
+    background: radial-gradient(circle at center, 
+                color-mix(in srgb, var(--blue) 13%, rgb(25, 25, 25)), 
+                color-mix(in srgb, var(--aqua) 10%, rgb(25, 25, 25)));
     border-radius: 3rem;
-    padding: min(24px, 4%);
+    padding: min(24px, 6%);
     position: relative;
-}
-
-@property --angle {
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
-}
-
-.project-wrapper::after, .project-wrapper::before {
-    --angle: 0deg;
-    inset: -0.2rem;
-    content: '';
-    position: absolute;
-    background-image: conic-gradient(from var(--angle), var(--aqua), var(--blue), var(--aqua));
-    z-index: -1;
-    border-radius: 3.2rem;
-    animation: 10s spin linear infinite;
-}
-
-@keyframes spin {
-    from {
+    
+    &::after, &::before {
+        /* Offload animation to GPU */
+        transform: translate3d(0, 0, 0);
         --angle: 0deg;
+        inset: -0.2rem;
+        content: '';
+        position: absolute;
+        background-image: conic-gradient(from var(--angle), var(--aqua), var(--blue), var(--aqua));
+        z-index: -1;
+        border-radius: 3.2rem;
+        animation: 10s spin linear infinite;
     }
-    to {
-        --angle: 360deg;
+
+    &::before {
+        filter: blur(0.5rem);
+        opacity: 0.75;
     }
 }
 
-.project-wrapper::before {
-    filter: blur(0.5rem);
-    opacity: 0.75;
+.icon-container {
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .icon-wrapper {
@@ -232,43 +231,66 @@ svg {
 
 .icon-bg {
     width: 100%;
-    height: 100%;
-    padding: 5px;
+    height: fit-content;
+    padding: 0.4em;
     display: block;
     box-sizing: border-box;
-    background-color: rgb(25, 25, 25);
+    background-color: rgb(25, 25, 25); /* In case color-mix is not supported */
+    background: radial-gradient(circle at center, 
+                color-mix(in srgb, var(--blue) 13%, rgb(25, 25, 25)), 
+                color-mix(in srgb, var(--aqua) 10%, rgb(25, 25, 25)));
     border-radius: 30px;
     position: relative;
+
+    &::after, &::before {
+        /* Offload animation to GPU */
+        transform: translate3d(0, 0, 0);
+        --angle: 0deg;
+        inset: -3px;
+        content: '';
+        position: absolute;
+        background-image: conic-gradient(from var(--angle), var(--aqua), var(--blue), var(--aqua));
+        z-index: -1;
+        border-radius: 33px;
+        animation: 10s spin linear infinite;
+    }
+    &::before {
+        filter: blur(0.5rem);
+        opacity: 0.75;
+    }
 }
 
-.icon-bg::after, .icon-bg::before {
-    --angle: 0deg;
-    inset: -3px;
-    content: '';
-    position: absolute;
-    background-image: conic-gradient(from var(--angle), var(--aqua), var(--blue), var(--aqua));
-    z-index: -1;
-    border-radius: 33px;
-    animation: 10s spin linear infinite;
-}
-
-.icon-bg::before {
-    filter: blur(0.5rem);
-    opacity: 0.75;
+.github-link {
+    width: 10%;
+    height: fit-content;
+    padding: 0.6em;
+    /* border: transparent 4px solid; */
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+    /* background: rgba(25, 25, 25, 0.6); */
+    /* background: radial-gradient(circle at center, 
+                color-mix(in srgb, var(--blue) 7%, rgb(25, 25, 25)), 
+                color-mix(in srgb, var(--aqua) 7%, rgb(25, 25, 25))); */
+    border-radius: 30px;
+    &:hover {
+        /* padding: 0.6em; */
+        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 1));
+        /* border: rgba(25, 25, 25, 0.2) 4px solid;
+        background: rgba(25, 25, 25, 0.5); */
+    }
 }
 
 .project-header {
     font-size: clamp(16px, 6vw, 32px);
     padding: 0;
-    margin: 12px 0;
-    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.15));
+    margin: 32px 0 12px;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.15));
 }
 
 .project-description {
-    font-size: clamp(12px, 4vw, 24px);
+    font-size: clamp(1px, 4vw, 24px);
     padding: 0;
     margin: 12px 0;
-    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.15));
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.15));
 }
 
 .tags-container {
@@ -309,7 +331,7 @@ svg {
 }
 
 
-/* Below icon styling is used solely for the clickable links in the hero section while below is used for the projects*/
+/* Below icon styling is used solely for the clickable links in the hero section while above is used for the projects*/
 
 .icon {
     margin: 0;
@@ -328,8 +350,11 @@ svg {
 }
 
 .gradient-flow {
+    /* Offload animation to GPU */
+    transform: translate3d(0, 0, 0);
     background: radial-gradient(circle at center, var(--aqua), var(--blue));
     background-size: 300%;
+    will-change: background-position-x;
     color: transparent;
     background-clip: text;
     filter: drop-shadow(0 0 20px rgba(var(--cyan), 0.2));
@@ -337,12 +362,29 @@ svg {
     position: relative;
 }
 
+/* CSS Animations */
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes spin {
+    from {
+        --angle: 0deg;
+    }
+    to {
+        --angle: 360deg;
+    }
+}
+
 @keyframes gradientFlow {
     0%   { background-position-x: 300%; }
     100%  { background-position-x: 0%; }
 }
 
-@media (max-width: 768px) { 
+/* Whenever device/screen is below 1400px */
+@media (max-width: 1400px) { 
   .project-container {
     display: flex;
     flex-direction: column;
@@ -352,5 +394,12 @@ svg {
 
   .project-wrapper {
     width: 90% !important;
+  }
+}
+
+/* Whenever device/screen is below 768px */
+@media (max-width: 768px) { 
+  nav {
+    display: none;
   }
 }
