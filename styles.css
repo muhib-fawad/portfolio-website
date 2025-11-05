@@ -447,8 +447,8 @@ button[type="submit"] {
     box-sizing: border-box;
     color: white;
     filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.15));
-    font-size: 1em;
-    padding: clamp(8px, 1%, 16px) clamp(12px, 6%, 24px);
+    font-size: 0.9em;
+    padding: 0.3em 0.7em;
     &:hover {
         filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.4));
         background: rgba(255, 255, 255, 0.07);
@@ -550,6 +550,9 @@ button[type="submit"] {
         }
     }
     .input {
+        border-radius: 0.5rem;
+    }
+    button[type="submit"] {
         border-radius: 0.5rem;
     }
 }
