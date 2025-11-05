@@ -5,13 +5,10 @@ const particles = [];
 const particleCount = 400;
 
 function resizeCanvas() {
-  // canvas = document.getElementById("bg-canvas");
-  // ctx = canvas.getContext("2d");
-
   const oldWidth = width;
   const oldHeight = height;
   width = canvas.width = window.innerWidth;
-  height = canvas.height = window.innerHeight;
+  height = canvas.height = window.innerHeight + 200;
 
   const scaleX = width / oldWidth;
   const scaleY = height / oldHeight;
