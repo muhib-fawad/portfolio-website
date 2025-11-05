@@ -7,11 +7,47 @@
         <link rel="stylesheet" href="styles.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Muhib Fawad</title>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+        <script type="text/javascript">
+            (function(){
+                emailjs.init({
+                    publicKey: "ZBgt6GNvmHu_zrJ49", // EmailJS public key
+                });
+            })();
+        </script>
+        <script>
+            window.addEventListener('load', function() {
+                document.body.classList.add('loaded');
+                window.scrollTo(0, 0);
+                setTimeout(() => {
+                    window.scrollTo(0, 0);
+                }, 10);
+
+                // Add class to body to prevent scrolling
+                document.body.classList.add('noscroll');
+
+                // Duration of your intro animation (in ms)
+                const animationDuration = 500; 
+
+                setTimeout(() => {
+                    document.body.classList.remove('noscroll');
+                }, animationDuration);
+            });
+        </script>
+        <style>
+            body {
+                filter: blur(20px);
+                opacity: 0;
+                transition: filter 0.2s ease, opacity 0.4s ease;
+            }
+            body.loaded {
+                filter: none;
+                opacity: 1;
+            }
+        </style>
     </head>
     <body>
-
         <canvas id="bg-canvas"></canvas>
-
         <nav>
             <ul id="navbar">
                 <li><a href="#">Home</a></li>
@@ -113,13 +149,13 @@
                         </ul>
                     </li>
 
-                    <li class="project-wrapper">
+                    <!-- <li class="project-wrapper">
                         <h3 class="project-header">Quick Emoji</h3>
                         <p class="project-description"></p>
                         <ul class="tags-container">
                             <li class="tags language-tag">Python</li>
                         </ul>
-                    </li>
+                    </li> -->
                 </ul>
             </section>
             <!-- <section id="technical-skills">
@@ -138,6 +174,44 @@
             </section> -->
             <section id="contact">
                 <h2 class="gradient-flow">Contact Me</h2>
+                <form id="contact-form">
+                    <div class="input-container">
+                        <div class="input-wrapper">
+                            <input class="input" type="text" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="input-wrapper">
+                            <input class="input" type="text" name="email" placeholder="Your Email" required>
+                        </div>
+                    </div>
+                    <div class="input-wrapper" style="width: 100%">
+                        <input class="input" style="padding: min(16px, 1.5%);" type="text" name="subject" placeholder="Subject">
+                    </div>
+                    <div class="input-wrapper" style="width: 100%; height: 30vh;">
+                        <textarea class="input" type="text" name="message" placeholder="Your Message" style="resize: none;"></textarea>
+                    </div>
+                    <div class="input-wrapper" style="width: fit-content; height: fit-content; padding: none;">
+                        <button type="submit">Send</button>
+                    </div>
+                </form>
+                <!-- Handle contact requests below -->
+                <script>
+                    document.getElementById('contact-form').addEventListener('submit', function(event) {
+                    event.preventDefault();
+
+                        emailjs.sendForm('service_frb6gt4', 'template_1tvctqg', '#contact-form').then(
+                            (response) => {
+                                console.log('Email sent successfully.');
+                                alert('Thank you for reaching out! I will get back to you within 1 business day.');
+                                this.reset();
+                            },
+                            (error) => {
+                                console.log('Error sending email. Please try again.', error);
+                                alert('Error sending email. Reach out directly by clicking the mail icon under my name at the top.');
+                            }
+                        );
+                        clear
+                    });
+                </script>
             </section>
         </div>
         <script src="background.js"></script>

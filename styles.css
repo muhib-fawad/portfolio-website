@@ -15,15 +15,22 @@ body {
     background: #0e0e0e;
     color: white;
     font-family: "Roboto", sans-serif;
+    opacity: 1;        /* Hide content */
+}
+
+body.unloaded {
+    opacity: 0 !important;        /* Show content when fully loaded */
+    transition: opacity 0.5s ease; 
 }
 
 h2 {
     font-size: clamp(1.25rem, 4vw + 1.25rem, 3.8rem);
-    margin: min(30px, 3%) 0;
+    margin: min(30px, 4%) 0 min(20px, 3%);
 }
 
 p {
     font-size: clamp(1rem, 1vw + 1rem, 1.5rem);
+    margin: 0 0 min(15px, 2%);
 }
 
 ul {
@@ -173,7 +180,7 @@ svg {
     overflow: wrap;
     justify-content: center;
     margin: 0;
-    padding: min(25px, 3%) 0;
+    padding: min(20px, 3%) 0;
     gap: clamp(20px, 3%, 40px);
     width: 100%;
    
@@ -273,6 +280,7 @@ svg {
     border-radius: 30px;
     &:hover {
         /* padding: 0.6em; */
+        transition: 0.3s;
         filter: drop-shadow(0 0 5px rgba(255, 255, 255, 1));
         /* border: rgba(25, 25, 25, 0.2) 4px solid;
         background: rgba(25, 25, 25, 0.5); */
@@ -330,6 +338,127 @@ svg {
     background-color: rgba(var(--rgbblue), 0.2);
 }
 
+form {
+    padding: min(10px, 1%) 0 0;
+    display: flex;
+    min-width: none;
+    width: 50%; /* Switch to 70% after adding another project */
+    margin: 0 auto;
+    gap: clamp(15px, 2%, 35px);
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+}
+
+.input-container {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    font-size: clamp(1rem, 1vw + 1rem, 1.5rem);
+    height: fit-content;
+    width: 100%;
+}
+
+.input-wrapper {
+    /* width: clamp(20px, 25%, 500px); */
+    width: 50%;
+    height: 100%;
+    font-size: clamp(1rem, 1vw + 1rem, 1.5rem);
+    border: none;
+    text-align: start;
+    display: block;
+    justify-content: space-between;
+    align-items: start;
+    flex-direction: column;
+
+    box-sizing: border-box;
+    background-color: rgb(25, 25, 25); /* In case color-mix is not supported */
+    background: radial-gradient(circle at center, 
+                color-mix(in srgb, var(--blue) 13%, rgb(25, 25, 25)), 
+                color-mix(in srgb, var(--aqua) 10%, rgb(25, 25, 25)));
+    border-radius: 1rem;
+    padding: 0;
+    position: relative;
+    
+    &::after, &::before {
+        /* Offload animation to GPU */
+        transform: translate3d(0, 0, 0);
+        --angle: 0deg;
+        inset: -0.2rem;
+        content: '';
+        position: absolute;
+        background-image: conic-gradient(from var(--angle), var(--aqua), var(--blue), var(--aqua));
+        z-index: -1;
+        border-radius: 1.2rem;
+        animation: 10s spin linear infinite;
+    }
+
+    &::before {
+        filter: blur(0.5rem);
+        opacity: 0.75;
+    }
+}
+
+.input {
+    height: 100%;
+    width: 100%;
+    font-size: 0.8em;
+    border-radius: 1rem;
+    box-sizing: border-box;
+    padding: min(16px, 3%);
+    border: none;
+    background-color: inherit;
+    color: white;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.15));
+
+    &:focus {
+        outline: none;
+        /* border: none; */
+    }
+
+    &:-webkit-autofill,
+     :-webkit-autofill:hover, 
+     :-webkit-autofill:focus, 
+     :-webkit-autofill:active {
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: white;
+        caret-color: white;
+        transition: background-color 5000s ease-in-out 0s;
+        box-shadow: inset 0 0 20px 20px transparent;
+    }
+}
+
+textarea {
+    font-family: "Roboto", sans-serif;
+    font-weight: inherit;
+    height: 100%;
+    width: 100%;
+    font-size: 0.8em;
+    border-radius: 3rem;
+    border: none;
+    box-sizing: border-box;
+    border: none;
+    background-color: inherit;
+    color: white;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.15));
+}
+
+button[type="submit"] {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-radius: 1rem;
+    box-sizing: border-box;
+    color: white;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.15));
+    font-size: 1em;
+    padding: clamp(8px, 1%, 16px) clamp(12px, 6%, 24px);
+    &:hover {
+        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.4));
+        background: rgba(255, 255, 255, 0.07);
+        transition: 0.3s;
+    }
+}
 
 /* Below icon styling is used solely for the clickable links in the hero section while above is used for the projects*/
 
@@ -342,9 +471,8 @@ svg {
     width: clamp(25px, 2vw, 40px);
     height: clamp(25px, 2vw, 40px);
     padding: 6px;
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    box-shadow: inset 0 0 5px 2px rgba(255, 255, 255, 0.35),  
-                0 0 7px 2px rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 5px 1px rgba(255, 255, 255, 0.6),  
+                0 0 7px 2px rgba(255, 255, 255, 0.15);
     border-radius: 80px;
     background-clip: border-box !important;
 }
@@ -385,16 +513,45 @@ svg {
 
 /* Whenever device/screen is below 1400px */
 @media (max-width: 1400px) { 
-  .project-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;  
-    justify-content: center;  
-  }
+    .project-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;  
+        justify-content: center;  
+    }
 
-  .project-wrapper {
-    width: 90% !important;
-  }
+    .project-wrapper {
+        width: 100% !important;
+        border-radius: 1.4rem;
+        &::after, &::before {
+            border-radius: 1.6rem;
+          
+        }
+    }
+
+    .icon-bg {
+        width: 100% !important;
+        border-radius: 15px;
+        &::after, &::before {
+            border-radius: 18px;
+          
+        }
+    }
+
+    form {
+        width: 100%;
+    }
+
+    .input-wrapper { 
+        border-radius: 0.5rem;
+        &::after, &::before {
+            border-radius: 0.7rem;
+          
+        }
+    }
+    .input {
+        border-radius: 0.5rem;
+    }
 }
 
 /* Whenever device/screen is below 768px */
