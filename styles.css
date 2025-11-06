@@ -268,18 +268,33 @@ svg {
     height: fit-content;
     padding: 0.6em;
     /* border: transparent 4px solid; */
-    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+    /* filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5)); */
     /* background: rgba(25, 25, 25, 0.6); */
     /* background: radial-gradient(circle at center, 
                 color-mix(in srgb, var(--blue) 7%, rgb(25, 25, 25)), 
                 color-mix(in srgb, var(--aqua) 7%, rgb(25, 25, 25))); */
     border-radius: 30px;
+}
+
+/* Apply effect on svg so for resource efficiency */
+.github-link svg {
+    animation: 5s giteffect ease infinite;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 1));
     &:hover {
-        /* padding: 0.6em; */
-        transition: 0.3s;
+        animation: none;
         filter: drop-shadow(0 0 5px rgba(255, 255, 255, 1));
-        /* border: rgba(25, 25, 25, 0.2) 4px solid;
-        background: rgba(25, 25, 25, 0.5); */
+        transform: scale(1.15);
+    }
+}
+
+@keyframes giteffect {
+    0%, 100% {
+        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
+        transform: scale(1.15);
+    }
+    50% {
+        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+        transform: scale(1);
     }
 }
 
