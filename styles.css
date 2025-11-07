@@ -191,7 +191,7 @@ svg {
     align-items: start;
     flex-direction: column;
     min-height: fit-content;
-    height: 30vh;
+    height: clamp(0px, 37vh, 430px);
     width: clamp(20px, 25%, 500px);
     box-sizing: border-box;
     background-color: rgb(25, 25, 25); /* In case color-mix is not supported */
@@ -329,7 +329,7 @@ svg {
 }
 
 .tags {
-    font-size: clamp(10px, 3vw, 18px);
+    font-size: clamp(10px, 0.8vw, 18px);
     box-sizing: border-box;
     width: fit-content;
     padding: 0.3em 0.8em;
@@ -537,6 +537,7 @@ button[type="submit"] {
     }
 
     .project-header {
+        margin-top: 16px;
         font-size: clamp(16px, 5vw, 32px);
     }
 
@@ -546,6 +547,7 @@ button[type="submit"] {
 
     .project-wrapper {
         width: 100% !important;
+        height: fit-content;
         border-radius: 1.4rem;
         &::after, &::before {
             border-radius: 1.6rem;
