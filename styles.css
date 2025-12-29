@@ -510,7 +510,7 @@ button[type="submit"] {
 .scroll-animation {
     animation: text-appear both;
     animation-timeline: view();
-    animation-range: entry 10% cover 50lvh;
+    animation-range: entry 10% cover 50dvh;
 }
 
 @keyframes text-appear {
